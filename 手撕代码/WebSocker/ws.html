@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      let socket;
+
+      function connectWebSocket() {
+        socket = new WebSocket('ws://localhost:8080');
+
+        socket.onopen = function () {
+          console.log('WebSocket connected');
+          startHeartbeat();
+        };
+
+        socket.onmessage = function (event) {
+          console.log('Received:', event.data);
+          if (event.data === 'pong') {
+            console.log('Received pong from server');
+          }
+        };
+
+        socket.onclose = function (event) {
+          console.log('WebSocket closed:', event);
+          // 尝试重连
+          setTimeout(connectWebSocket, 5000);
+        };
+
+        socket.onerror = function (error) {
+          console.error('WebSocket error:', error);
+          // 尝试重连
+          setTimeout(connectWebSocket, 5000);
+        };
+      }
+
+      function startHeartbeat() {
+        let heartbeatInterval = setInterval(() => {
+          if (socket.readyState === WebSocket.OPEN) {
+            socket.send('ping');
+            console.log('Sent ping to server');
+          } else {
+            clearInterval(heartbeatInterval);
+          }
+        }, 5000);
+      }
+
+      connectWebSocket();
+    </script>
+  </body>
+</html>

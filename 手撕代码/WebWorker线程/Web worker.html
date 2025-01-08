@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>web worker</title>
+  </head>
+
+  <script>
+    function singleWork() {
+      console.log('单线程start');
+      function fn(n) {
+        if (n === 1 || n === 2) {
+          return 1;
+        }
+        return fn(n - 1) + fn(n - 2);
+      }
+      console.time('单线程执行时间');
+      for (let i = 0; i < 20; i++) {
+        const res = fn(40);
+        console.log({
+          data: res,
+          name: 'single test',
+        });
+      }
+      console.timeEnd('单线程执行时间');
+    }
+    function multipleWork() {
+      const list = [];
+      console.time('多线程执行时间');
+      for (let i = 0; i < 20; i++) {
+        const item = new Promise((resolve) => {
+          const item = new Worker('./worker.js');
+          item.postMessage({
+            count: 20,
+          });
+          item.onmessage = (res) => {
+            resolve(res);
+            item.terminate();
+          };
+        });
+        list.push(item);
+      }
+      Promise.all(list).then((res) => {
+        console.log(res);
+        console.timeEnd('多线程执行时间');
+      });
+    }
+  </script>
+
+  <body>
+    <button onclick="singleWork()">单线程</button>
+    <button onclick="multipleWork()">多线程</button>
+  </body>
+</html>

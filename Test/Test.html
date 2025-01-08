@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <!DOCTYPE html>
+  <html lang="en">
+    <head></head>
+  </html>
+  <body>
+    <style>
+      .content {
+        height: 100vw;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .box {
+        height: 100px;
+        width: 50px;
+        background: red;
+        animation: move 1000ms forwards;
+      }
+      @keyframes move {
+        100% {
+          width: 100px;
+          height: 100px;
+        }
+      }
+    </style>
+    <div class="content">
+      <div class="box"></div>
+    </div>
+    <script>
+      const box = document.querySelector('.box');
+    </script>
+  </body>
+</html>
