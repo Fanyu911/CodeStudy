@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        new Promise((rs, rj) => {
+            console.log(1);
+            rs();
+        }).then((value) => {
+            console.log(2);
+            throw "Some error";
+            return 3;
+        }).then((values) => {
+            console.log(values);
+        }).catch((err) => {
+            console.log(err);
+        }).finally(() => {
+            console.log('end');
+        });
+    </script>
+</head>
+
+<body>
+    <p id="demo">11</p>
+
+</body>
+
+</html>

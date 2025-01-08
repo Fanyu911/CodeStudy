@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        var str = 'adadsad1213ad'
+
+        function cha(str) {
+            var newArr = [];
+            var index = str.indexOf('a');
+            if (index === -1) {
+                return -1;
+            }
+            newArr.push(index);
+            while (index !== -1) {
+                index = str.indexOf('a', index + 1);
+                if (index !== -1) {
+                    newArr.push(index);
+                }
+            }
+            return newArr;
+        }
+        console.log(cha(str));
+    </script>
+</head>
+
+<body>
+    <p id="demo">11</p>
+
+</body>
+
+</html>

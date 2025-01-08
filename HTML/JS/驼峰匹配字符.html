@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function changeStr(str) {
+            var arr = str.split('');
+            while (arr[0] == '-' || arr[0] == '_') {
+                arr.splice(0, 1)
+            }
+            arr[0] = arr[0].toLowerCase();
+            var i = 1;
+            while (arr[i]) {
+                if (arr[i] == '-' || arr[i] == '_') {
+                    if (arr[i + 1] == '-' || arr[i + 1] == '_') {
+                        arr.splice(i, 1)
+                        continue
+                    }
+                    arr.splice(i, 1)
+                    arr[i] = arr[i].toUpperCase();
+                    i++;
+                } else {
+                    arr[i] = arr[i].toLowerCase();
+                    i++;
+                }
+            }
+            return arr.join('')
+        }
+        var test = '_cOntEnt-type_-IS-ViDEo'
+        console.log(changeStr(test));
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

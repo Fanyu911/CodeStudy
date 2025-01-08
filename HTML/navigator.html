@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+<title>demo1</title>
+</head>
+
+<body>
+    <nav>
+        <ul class="nav">
+            <li><a href="#">首页</a></li>
+            <li><a href="#">关于</a></li>
+            <li><a href="#">更多</a></li>
+        </ul>
+    </nav>
+    
+    <style>
+    ul{
+        /* float: right; */
+        padding: 0;
+        margin: 0;
+        list-style: none;
+        width: 200px;
+        background-color: sandybrown;
+    }
+
+    /* block允许我们指定宽度 */
+    a{
+        display: block;
+        text-align: center;
+        padding: 5px 10px;
+        text-decoration: none;
+    }
+    a:hover {
+        background-color: salmon;
+        color: seagreen;
+    }
+
+    a:active {
+        background-color: red;
+        color: seashell;
+    }
+
+    a:hover:not(:active) {
+        background-color: skyblue;
+        color: white;
+    }
+
+    li {
+
+        border: 1px solid yellow;
+    }
+    </style>
+
+</body>
+</html>
