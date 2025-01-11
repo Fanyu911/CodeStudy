@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>可互相拖拽的元素</title>
+  </head>
+
+  <body>
+    <style>
+      .box {
+        width: 200px;
+        height: 200px;
+        border: red 1px solid;
+        margin-bottom: 10px;
+      }
+
+      .box1 {
+        width: 200px;
+        height: 200px;
+        border: red 1px solid;
+      }
+
+      .ball {
+        display: inline-block;
+        width: 20px;
+        height: 20px;
+        background: blue;
+      }
+    </style>
+    <div class="box">
+      <span class="ball" draggable="true">123</span>
+    </div>
+    <div class="box1"></div>
+    <script>
+      const ball = document.querySelector(".ball");
+      const box = document.querySelector(".box");
+      const box1 = document.querySelector(".box1");
+
+      // 在dragstart事件中设置要传递的数据以及effectAllowed属性
+      ball.addEventListener("dragstart", (e) => {
+        e.dataTransfer.setData("text/plain", "ball");
+        e.dataTransfer.effectAllowed = "move";
+      });
+
+      // 给box元素添加dragover事件处理，阻止默认行为，使其能作为目标接收拖动元素
+      box.addEventListener("dragover", (e) => {
+        e.preventDefault();
+      });
+
+      // 给box元素添加drop事件处理，实现将拖动元素添加到box中
+      box.addEventListener("drop", (e) => {
+        e.preventDefault();
+        box.appendChild(ball);
+      });
+
+      // 给box1元素添加dragover事件处理，阻止默认行为，使其能作为目标接收拖动元素
+      box1.addEventListener("dragover", (e) => {
+        e.preventDefault();
+      });
+
+      // 给box1元素添加drop事件处理，实现将拖动元素添加到box1中
+      box1.addEventListener("drop", (e) => {
+        e.preventDefault();
+        box1.appendChild(ball);
+      });
+    </script>
+  </body>
+</html>
