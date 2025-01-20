@@ -1,5 +1,6 @@
 const isObject = (target) =>
-  (typeof target === 'object' || typeof target === 'function') && target !== null;
+  (typeof target === "object" || typeof target === "function") &&
+  target !== null;
 
 const deepClone = (target, map = new Map()) => {
   if (map.get(target)) return target;
@@ -17,3 +18,4 @@ const deepClone = (target, map = new Map()) => {
     return target;
   }
 };
+console.log(deepClone({ 1: "22" }));

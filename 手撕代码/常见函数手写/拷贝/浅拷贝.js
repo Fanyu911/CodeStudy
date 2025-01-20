@@ -1,5 +1,5 @@
 const shallowClone = (target) => {
-  if (typeof target === 'object' && target !== null) {
+  if (typeof target === "object" && target !== null) {
     const cloneTarget = {};
     for (let prop in target) {
       if (target.hasOwnProperty(prop)) {
