@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lazy Loading Example</title>
+    <style>
+      .image-container {
+        height: 800px;
+        margin-bottom: 20px;
+      }
+      img {
+        width: 100%;
+        height: auto;
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="image-container">
+      <img
+        data-src="//www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png"
+        alt="Lazy Loaded Image"
+        class="lazy-load"
+      />
+    </div>
+    <div class="image-container">
+      <img
+        data-src="//www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png"
+        alt="Lazy Loaded Image"
+        class="lazy-load"
+      />
+    </div>
+    <div class="image-container">
+      <img
+        data-src="//www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png"
+        alt="Lazy Loaded Image"
+        class="lazy-load"
+      />
+    </div>
+
+    <script>
+      let img = document.getElementsByTagName("img");
+
+      const observer = new IntersectionObserver((changes) => {
+        //changes 是被观察的元素集合
+        for (let i = 0, len = changes.length; i < len; i++) {
+          let change = changes[i];
+          // 通过这个属性判断是否在视口中
+          if (change.isIntersecting) {
+            const imgElement = change.target;
+            imgElement.src = imgElement.getAttribute("data-src");
+            observer.unobserve(imgElement);
+          }
+        }
+      });
+      Array.from(img).forEach((item) => observer.observe(item));
+    </script>
+  </body>
+</html>

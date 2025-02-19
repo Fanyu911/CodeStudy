@@ -1,34 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <style>
+      div {
+        height: 1rem;
+        margin: 0 auto;
+        background-color: cadetblue;
+        font-size: 1rem;
+      }
+
+      @media only screen and (max-width: 2000px) {
         div {
-            height: 1rem;
-            margin: 0 auto;
-            background-color: cadetblue;
-            font-size: 1rem;
+          font-size: 40px;
         }
-        
-        @media only screen and (max-width: 2000px) {
-            div {
-                font-size: 40px;
-            }
+      }
+
+      @media only screen and (min-width: 600px) {
+        div {
+          font-size: 100px;
         }
-        
-        @media only screen and (min-width: 600px) {
-            div {
-                font-size: 100px;
-            }
-        }
+      }
     </style>
-</head>
+  </head>
 
-<body>
+  <body>
     <div>购物车</div>
-</body>
-
+  </body>
 </html>
